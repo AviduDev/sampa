@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.4.1"
+    "@hygraph/hygraph-astro-loader": "^0.2.0",
+    "astro": "^5.4.1",
+    "graphql-request": "^7.1.2"
   }
 }

@@ -1,11 +1,32 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { GraphQLClient } from 'graphql-request';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const client = new GraphQLClient(import.meta.env.HYGRAPH_ENDPOINT)
+
+const { services }: any = await client.request(`
+query Services {
+  services {
+    title
+    slug
+    description
+    id
+  }
+}
+`)
 ---
 
 <Layout>
+	{
+
+		services.map((service: any) => {
+			return (
+				<li>
+					<a href={`/services/${service.slug}`}>{service.title}</a>
+					</li>
+			)
+		})
+	}
 	<Welcome />
 </Layout>
