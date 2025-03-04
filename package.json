@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@hygraph/hygraph-astro-loader": "^0.2.0",
+    "@tailwindcss/vite": "^4.0.9",
     "astro": "^5.4.1",
-    "graphql-request": "^7.1.2"
+    "graphql-request": "^7.1.2",
+    "tailwindcss": "^4.0.9"
   }
 }

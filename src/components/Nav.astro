@@ -1,0 +1,19 @@
+---
+import { Image } from "astro:assets";
+const logo =
+  "https://ap-south-1.graphassets.com/cm7aqwo1w0gkq07pkgypudomw/cm7ubzqf20qax07pdn1bp234r";
+---
+
+<nav
+  class="flex flex-row place-content-between mx-auto max-w-5xl bg-orange-600 p-6 mt-2 align-middle rounded-sm max-sm:hidden"
+>
+  <a href="/"> <Image src={logo} alt="" width="70" height="30" /></a>
+
+  <ul class="flex flex-row gap-4 font-medium text-white">
+    <li><a href="/">Home</a></li>
+    <li><a href="/">Our Products</a></li>
+    <li><a href="/">Our Services</a></li>
+    <li><a href="/">About Us</a></li>
+    <li><a href="/">Contact Us</a></li>
+  </ul>
+</nav>
