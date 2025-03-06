@@ -1,0 +1,13 @@
+---
+import { Image } from "astro:assets";
+
+const image =
+  "https://ap-south-1.graphassets.com/cm7aqwo1w0gkq07pkgypudomw/cm7wxxeph0k3207pp5dpko3pw";
+
+const { categoryImage, slug, title, id, width, height } = Astro.props;
+---
+
+<a href={`/product-categories/${slug}`} class="w-full h-full">
+  <Image src={categoryImage} width={width} height={height} alt={title} />
+  <h4 class="bg-orange-500 inline-block hover:bg-white">{title}</h4>
+</a>

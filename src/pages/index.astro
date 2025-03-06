@@ -1,9 +1,11 @@
 ---
-import Hero from '../components/Hero.astro';
-import Layout from '../layouts/Layout.astro';
-import { GraphQLClient } from 'graphql-request';
+import CategoryCard from "../components/CategoryCard.astro";
+import CategorySection from "../components/CategorySection.astro";
+import Hero from "../components/Hero.astro";
+import Layout from "../layouts/Layout.astro";
+import { GraphQLClient } from "graphql-request";
 
-const client = new GraphQLClient(import.meta.env.HYGRAPH_ENDPOINT)
+const client = new GraphQLClient(import.meta.env.HYGRAPH_ENDPOINT);
 
 const { services }: any = await client.request(`
 query Services {
@@ -14,20 +16,26 @@ query Services {
     id
   }
 }
-`)
+`);
 ---
 
 <Layout>
-	<Hero />
-	{
+  <!-- Hero section -->
+  <Hero />
 
-		services.map((service: any) => {
-			return (
-				<li>
-					<a href={`/services/${service.slug}`}>{service.title}</a>
-					</li>
-			)
-		})
-	}
+    <!-- Product Categories -->
+<CategorySection />
+
+
+  {
+    services.map((service: any) => {
+      return (
+        <li>
+          <a href={`/services/${service.slug}`}>{service.title}</a>
+        </li>
+      );
+    })
+  }
+
 
 </Layout>

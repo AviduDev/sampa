@@ -1,0 +1,36 @@
+---
+import { GraphQLClient } from "graphql-request";
+import Layout from "../../layouts/Layout.astro";
+import type { any } from "astro:schema";
+
+export async function getStaticPaths() {
+  const client = new GraphQLClient(import.meta.env.HYGRAPH_ENDPOINT);
+
+  const { categories }: any = await client.request(`
+query Categories {
+  categories(first: 15) {
+    id
+    title
+    slug
+  }
+}
+    `);
+
+  const paths = categories.map((category: any) => ({
+    params: { slug: category.slug },
+    props: {
+      category,
+    },
+  }));
+
+  return paths;
+}
+
+const category = Astro.props.category;
+---
+
+<Layout>
+  <main class="pt-32">
+    <h1 class="text-9xl text-center">{category.title}</h1>
+  </main>
+</Layout>

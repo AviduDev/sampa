@@ -1,0 +1,43 @@
+---
+import { GraphQLClient } from "graphql-request";
+import CategoryCard from "./CategoryCard.astro";
+
+const client = new GraphQLClient(import.meta.env.HYGRAPH_ENDPOINT);
+
+const { categories }: any = await client.request(`
+query Categories {
+  categories(first: 8) {
+    id
+    title
+    slug
+    categoryImage {
+      url
+      width
+      height
+    }
+  }
+}
+`);
+---
+
+<section class="flex flex-col pt-44">
+  <h2 class="text-8xl">Products By Category</h2>
+
+  <div class="grid grid-cols-4 gap-8 p-4 pt-8">
+  {
+    categories.map((category: any) => {
+      return (
+        <CategoryCard
+          categoryImage={category.categoryImage.url}
+          slug={category.slug}
+          title={category.title}
+          id={category.id}
+          width={640}
+          height={640}
+        />
+      );
+    })
+  }
+  </div>
+  <a href="/product-categories" class="self-end font-bold hover:bg-orange-500">Browse All Products →</a>
+</section>
